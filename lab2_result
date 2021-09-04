@@ -1,0 +1,48 @@
+.:
+total 4
+drw-rw-r-- 1 lab1 lab1 4096 Sep  4 16:47 dir
+-r--r----- 1 root lab1    5 Sep  4 16:46 file
+-rw------- 1 lab1 lab1    0 Sep  4 16:48 file1
+-rw-rw-rw- 1 lab1 lab1    0 Sep  4 16:48 file2
+-rw-rw-rw- 1 lab1 lab1    0 Sep  4 16:52 lab2_result.txt
+
+./dir:
+ls: cannot access './dir/new_file': Permission denied
+total 0
+-????????? ? ? ? ?            ? new_file
+    1  cd
+    2  mkdir test
+    3  cd test
+    4  touch file
+    5  ls -alF file
+    6  chmod 000 file
+    7  echo test > file
+    8  cat file
+    9  chmod 200 file
+   10  ls -alF file
+   11  echo test > file
+   12  cat file
+   13  chmod 240 file
+   14  cat file
+   15  chmod u+r file
+   16  cat file
+   17  mkdir dir
+   18  touch dir/new_file
+   19  echo test 2 > dir/new_file
+   20  ls -alF ./dir
+   21  chmod a-x dir
+   22  cat dir/new_file
+   23  rm dir/new_file
+   24  chown root:root file
+   25  umask 077
+   26  touch file1
+   27  ls -alF file1
+   28  umask 000
+   29  touch file2
+   30  ls -alF file2
+   31  sudo su
+   32  cat file
+   33  sudo su
+   34  cat file
+   35  ls -lR &> lab2_result.txt
+   36  history >> lab2_result.txt 
