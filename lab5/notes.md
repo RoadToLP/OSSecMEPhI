@@ -1,0 +1,9 @@
+i. Emergency message will be echoed and script will exit with error code 1, in case, if we will kill it with SIGINT, which ^C is.
+ii. procfs is not "physical" fs, it is purely generated and governed by kernel. Using syscalls on path /proc/self/* differs on each process. Basically, self is a symlink to pid of process that calls syscall, but when we do $$, bash do variable substitution before any execve syscall. It means that `ls /proc/self/fd` will list fds for `ls` process, and `ls /proc/$$/fd` will list fds for `bash` that calls `ls`
+iii. If fds are not remapped (for example due to input/output pipe, for example, `<` will change fd path to file that we want to pipe), 0 - stdin, 1 - stdout, 2 - stderr
+iv. fds will be remapped to files.
+v. ref iii.
+vi. exec commandlet in bash doesnt call any fork-based system call, it calls pure execve, which means that bash stops its work kernel starts new process, substituting caller, i.e. bash
+vii. `pos` parameters means position of cursor in opened file. It can be modified with some syscalls, for example read, write, or lseek. Since stdin or stdout are most ususally pts character devices, which are controlled by kernel and are used to display something on screen, pos on these most possibly will be zero
+viii. It is possible, unless we deleted it with `shred` command, or `dd if=/dev/urandom of=test.out`. It is because how ext4 works by its own. Full deletion of files, especially big, can be costful to hardware (ssds for example have limited number of writes in every cell). Thus, only link to this file is removed. So, when we call readdir syscall, which gets folder tree and reads links to file, link does not exist, but file is located somewhere on disk. BTW, since space that was occupied by file is marked as free, it can be overwritten by new file.
+
