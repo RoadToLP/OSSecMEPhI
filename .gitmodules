@@ -1,0 +1,3 @@
+[submodule "OSSecMephiLab4"]
+	path = OSSecMephiLab4
+	url = git@github.com:RoadToLP/OSSecMephiLab4.git
