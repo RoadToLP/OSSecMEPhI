@@ -1,0 +1,57 @@
+ldd /bin/login | grep pam
+ls -l /lib64/libpam*
+ls -l /lib64/security/
+vim /etc/pam.d/system-auth
+vim /etc/pam.d/su
+sudo vim /etc/pam.d/su
+su -c "id"
+sudo vim /etc/pam.d/su
+su -c "id"
+#failed
+sudo vim /etc/pam.d/su
+id | grep wheel && echo "Wheel present"
+su
+sudo vim /etc/pam.d/su
+su 
+sudo vim /etc/pam.d/su
+sudo -u bin "su"
+sudo vim /etc/pam.d/su
+sudo vim /etc/securetty 
+sudo vim /etc/pam.d/login
+sudo /bin/login
+sudo vim /etc/pam.d/login
+man pam_pwquality
+sudo vim /etc/security/pwquality.conf 
+sudo vim /etc/pam.d/system-auth
+passwd
+sudo vim /etc/pam.d/system-auth
+sudo vim /etc/security/pwquality.conf 
+man pam_limits
+vim /etc/security/limits.conf
+sudo vim /etc/security/limits.conf
+wget https://raw.githubusercontent.com/linux-pam/linux-pam/master/examples/check_user.c
+gcc check_user.c -o check_user -lpam -lpam_misc
+sudo vim /etc/pam.d/check
+./check_user user
+vim check_user.c 
+sudo vim /etc/pam.d/check
+gcc check_user.c -o check_user -lpam -lpam_misc
+useradd -M user1
+sudo useradd -M user1
+sudo passwd user1
+./check_user user1
+vim check_user.c 
+gcc check_user.c -o check_user -lpam -lpam_misc
+./check_user user1
+sudo cat /etc/passwd
+sudo cat /etc/shadow
+./check_user user1
+vim check_user.c 
+gcc check_user.c -o check_user -lpam -lpam_misc
+sudo passwd user1
+./check_user user1
+sudo passwd -l user1
+./check_user user1
+sudo chage -E 0 user1
+sudo passwd -u user1
+./check_user user1
