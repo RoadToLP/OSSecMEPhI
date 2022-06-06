@@ -1,0 +1,17 @@
+[Unit]
+Description=Simple echo server
+Requires=multi-user.target
+Name=echod
+Type=simple
+User=nobody
+Group=nogroup
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+ExecStart=/usr/local/bin/echod
+ExecStop=killall -9 echod
+
+
+
